@@ -1,11 +1,18 @@
 <template>
-<h1>Hello Jay</h1>
-  <Tutorial />
-  
+  <article>
+    <h1>{{ page.title }}</h1>
+    <nuxt-content :document="page" />
+  </article>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  async asyncData ({ $content }) {
+    const page = await $content('hello').fetch()
+
+    return {
+      page
+    }
+  }
 }
 </script>
